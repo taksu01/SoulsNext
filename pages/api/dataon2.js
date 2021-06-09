@@ -2,7 +2,7 @@ async function handler(req, res) {
   if (req.method === "POST") {
     const data = req.body;
     const fs = require("fs");
-    const search = "component/client/" + data.link + "/index.js",
+    const search = "components/client/" + data.link + "/index.js",
       pathCustom = "client/" + data.link,
       pathStandard = "hrm/" + data.link;
     fs.access(search, fs.F_OK, (err) => {

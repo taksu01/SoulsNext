@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import dynamic from "next/dynamic";
 // import EmployeeS from "../../component/standard/employee";
-let EmployeeC = dynamic(() => import("/component/hrm/employee"), {
+let EmployeeC = dynamic(() => import("/components/hrm/employee"), {
   ssr: false,
 });
 // const Employee = React.lazy(() =>
@@ -11,8 +11,9 @@ let EmployeeC = dynamic(() => import("/component/hrm/employee"), {
 // );
 
 export default function EmployeePage(props) {
+  console.log(props);
   //const EmployeeC = dynamic(() => import(`${props.content}`), { ssr: false });
-  EmployeeC = dynamic(() => import(`/component/${props.content}`), {
+  EmployeeC = dynamic(() => import(`/components/client/employee`), {
     ssr: false,
   });
   return (
@@ -26,7 +27,7 @@ export default function EmployeePage(props) {
 }
 
 export async function getStaticProps() {
-  const response = await fetch("/api/dataon2", {
+  const response = await fetch("http://localhost:3000/api/dataon2", {
     method: "POST",
     body: JSON.stringify({ link: "employee" }),
     headers: {
