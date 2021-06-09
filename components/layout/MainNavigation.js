@@ -12,11 +12,11 @@ function MainNavigation() {
             <Link href="/">Home Page</Link>
           </li>
           <li>
-            <Link href="/employee">Employee</Link>
+            <Link href="/employee">New Employee</Link>
           </li>
-          <li>
-            <Link href="/new-meetup">New Meeting</Link>
-          </li>
+          {/* <li>
+            <Link href="/new-meetup">New emp</Link>
+          </li> */}
         </ul>
       </nav>
     </header>

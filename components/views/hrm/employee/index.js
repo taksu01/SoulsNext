@@ -1,8 +1,9 @@
 // our-domain.com/new-meetup
-
+import { useRouter } from "next/router";
 import NewEmployeeForm from "/components/meetups/NewEmployeeForm";
 
 export default function Employee() {
+  const router = useRouter();
   async function addMeetupHandler(enteredMeetupData) {
     const response = await fetch("/api/dataon3", {
       method: "POST",

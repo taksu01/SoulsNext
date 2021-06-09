@@ -1,14 +1,15 @@
 import React, { lazy, Suspense } from "react";
 import dynamic from "next/dynamic";
-let EmployeeC = dynamic(() => import("/components/hrm/employee"), {
+let EmployeeC = dynamic(() => import("/components/views/hrm/employee"), {
   ssr: false,
 });
 
 export default function EmployeePage(props) {
   console.log(props);
-  EmployeeC = props.custom
-    ? dynamic(() => import(`/components/client/employee`))
-    : dynamic(() => import(`/components/hrm/employee`));
+  let test = "employee";
+  EmployeeC = dynamic(() => import(`/components/views/${props.content}`), {
+    ssr: false,
+  });
 
   return (
     <>
