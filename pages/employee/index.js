@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import dynamic from "next/dynamic";
 // import EmployeeS from "../../component/standard/employee";
-let EmployeeC = dynamic(() => import("../../component/hrm/employee"), {
+let EmployeeC = dynamic(() => import("/component/hrm/employee"), {
   ssr: false,
 });
 // const Employee = React.lazy(() =>

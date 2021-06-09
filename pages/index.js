@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 export default function Home() {
   const router = useRouter();
   async function SF7Link(page) {
-    const response = await fetch("http://localhost:3000/api/dataon", {
+    const response = await fetch("/api/dataon", {
       method: "POST",
       body: JSON.stringify(page),
       headers: {
