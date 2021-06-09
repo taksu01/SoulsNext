@@ -1,20 +1,29 @@
 import React, { lazy, Suspense } from "react";
 import dynamic from "next/dynamic";
+// import EmployeeS from "../../component/standard/employee";
 let EmployeeC = dynamic(() => import("/components/hrm/employee"), {
   ssr: false,
 });
+// const Employee = React.lazy(() =>
+//   import(`../../component/client/employee`).catch(() => ({n
+//     default: () => <div>Not found</div>,
+//   }))
+// );
 
 export default function EmployeePage(props) {
   console.log(props);
-  EmployeeC = props.custom
-    ? dynamic(() => import(`/components/client/employee`))
-    : dynamic(() => import(`/components/hrm/employee`));
-
+  //const EmployeeC = dynamic(() => import(`${props.content}`), { ssr: false });
+  EmployeeC = dynamic(() => import(`/components/client/employee`), {
+    ssr: false,
+  });
   return (
     <>
+      <h2>Test</h2>
       <EmployeeC></EmployeeC>
     </>
   );
+
+  //   return <h2>test;</h2>;
 }
 
 export async function getStaticProps() {
@@ -30,7 +39,6 @@ export async function getStaticProps() {
   return {
     props: {
       content: data.content,
-      custom: data.custom,
     },
   };
 }

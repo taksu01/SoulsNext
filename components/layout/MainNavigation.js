@@ -12,7 +12,10 @@ function MainNavigation() {
             <Link href="/">Home Page</Link>
           </li>
           <li>
-            <Link href="/">Employee</Link>
+            <Link href="/employee">Employee</Link>
+          </li>
+          <li>
+            <Link href="/new-meetup">New Meeting</Link>
           </li>
         </ul>
       </nav>

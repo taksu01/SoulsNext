@@ -9,9 +9,15 @@ async function handler(req, res) {
       if (err) {
         res
           .status(200)
-          .json({ Result: "file not detected", content: pathStandard });
+          .json({
+            Result: "file not detected",
+            content: pathStandard,
+            custom: false,
+          });
       } else {
-        res.status(200).json({ Result: "file detected", content: pathCustom });
+        res
+          .status(200)
+          .json({ Result: "file detected", content: pathCustom, custom: true });
       }
     });
   }
