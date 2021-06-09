@@ -11,14 +11,12 @@ let EmployeeC = dynamic(() => import("/component/hrm/employee"), {
 // );
 
 export default function EmployeePage(props) {
-  console.log(props);
   //const EmployeeC = dynamic(() => import(`${props.content}`), { ssr: false });
   EmployeeC = dynamic(() => import(`/component/${props.content}`), {
     ssr: false,
   });
   return (
     <>
-      {" "}
       <h2>Test</h2>
       <EmployeeC></EmployeeC>
     </>
@@ -28,7 +26,7 @@ export default function EmployeePage(props) {
 }
 
 export async function getStaticProps() {
-  const response = await fetch("http://localhost:3000/api/dataon2", {
+  const response = await fetch("/api/dataon2", {
     method: "POST",
     body: JSON.stringify({ link: "employee" }),
     headers: {
