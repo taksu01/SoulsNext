@@ -1,6 +1,6 @@
 // our-domain.com/new-meetup
 import { useRouter } from "next/router";
-import NewEmployeeForm from "/components/meetups/NewEmployeeForm";
+import NewEmployeeForm from "/components/meetups/cli_NewEmployeeForm";
 
 export default function Employee() {
   const router = useRouter();
@@ -22,7 +22,7 @@ export default function Employee() {
 
   return (
     <>
-      <h1>Normal Page</h1>
+      <h1>Custom Page</h1>
       <NewEmployeeForm onAddMeetup={addMeetupHandler} />
     </>
   );
