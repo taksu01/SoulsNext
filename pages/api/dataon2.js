@@ -1,18 +1,23 @@
 export async function checkCustom(id) {
   const data = id;
-  let temp;
+
   const fs = require("fs");
   const search = "client/dataon1/custom/" + data.link + "/index.js",
     pathCustom = "custom/" + data.link,
     pathStandard = "standard/" + data.link;
+  console.log("Reach0", temp);
+  let temp = { Result: "file detected", content: pathCustom, custom: true };
   try {
-    if (fs.existsSync(search))
+    if (fs.existsSync(search)) {
+      console.log("Reach1", temp);
       temp = {
         Result: "file not detected",
         content: pathStandard,
         custom: false,
       };
+    }
   } catch (err) {
+    console.log("Reach2", temp);
     temp = { Result: "file detected", content: pathCustom, custom: true };
   }
 
