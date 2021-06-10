@@ -5,8 +5,9 @@ export async function checkCustom(id) {
   const search = "client/dataon1/custom/" + data.link + "/index.js",
     pathCustom = "custom/" + data.link,
     pathStandard = "standard/" + data.link;
-  console.log("Reach0", temp);
+
   let temp = { Result: "file detected", content: pathCustom, custom: true };
+  console.log("Reach0", temp);
   try {
     if (fs.existsSync(search)) {
       console.log("Reach1", temp);
