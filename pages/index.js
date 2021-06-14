@@ -58,19 +58,19 @@ export async function getStaticProps() {
 
   client.close();
 
-  var mysql = require("mysql");
+  // var mysql = require("mysql");
 
-  var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "coffee_valley",
-  });
+  // var con = mysql.createConnection({
+  //   host: "localhost",
+  //   user: "root",
+  //   password: "",
+  //   database: "coffee_valley",
+  // });
 
-  con.connect(function (err) {
-    if (err) throw err;
-    con.query("SELECT * FROM bean", queryDes);
-  });
+  // con.connect(function (err) {
+  //   if (err) throw err;
+  //   con.query("SELECT * FROM bean", queryDes);
+  // });
 
   return {
     props: {
