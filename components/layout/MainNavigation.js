@@ -14,9 +14,6 @@ function MainNavigation() {
           <li>
             <Link href="/employee">New Employee</Link>
           </li>
-          <li>
-            <Link href="/new-meetup">New emp</Link>
-          </li>
         </ul>
       </nav>
     </header>
