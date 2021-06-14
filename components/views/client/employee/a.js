@@ -22,6 +22,7 @@ export default function Employee() {
 
   return (
     <>
+      <h1>Custom Page</h1>
       <NewEmployeeForm onAddMeetup={addMeetupHandler} />
     </>
   );

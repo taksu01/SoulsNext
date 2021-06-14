@@ -58,6 +58,20 @@ export async function getStaticProps() {
 
   client.close();
 
+  var mysql = require("mysql");
+
+  var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "coffee_valley",
+  });
+
+  con.connect(function (err) {
+    if (err) throw err;
+    con.query("SELECT * FROM bean", queryDes);
+  });
+
   return {
     props: {
       meetups: meetups.map((meetup) => ({
@@ -71,3 +85,6 @@ export async function getStaticProps() {
     revalidate: 1,
   };
 }
+const queryDes = (err, res, field) => {
+  console.log(res);
+};

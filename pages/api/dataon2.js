@@ -6,20 +6,20 @@ export async function checkCustom(id) {
     pathCustom = "custom/" + data.link,
     pathStandard = "standard/" + data.link;
 
-  let temp = { Result: "file detected", content: pathCustom, custom: true };
+  let temp = { Result: "file detected", content: pathStandard, custom: true };
   console.log("Reach0", temp);
   try {
     if (fs.existsSync(search)) {
       console.log("Reach1", temp);
       temp = {
         Result: "file not detected",
-        content: pathStandard,
+        content: pathCustom,
         custom: false,
       };
     }
   } catch (err) {
     console.log("Reach2", temp);
-    temp = { Result: "file detected", content: pathCustom, custom: true };
+    temp = { Result: "file detected", content: pathStandard, custom: true };
   }
 
   // fs.access(search, fs.F_OK, (err) => {
