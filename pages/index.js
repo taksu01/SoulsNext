@@ -5,22 +5,19 @@ import { MongoClient } from "mongodb";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import EmpList from "../components/meetups/EmpList";
+import { useTranslation } from "react-i18next";
 
 export default function Home(props) {
+  const { t, i18n } = useTranslation();
   const router = useRouter();
-  async function SF7Link(page) {
-    // const response = await fetch("/api/dataon", {
-    //   method: "POST",
-    //   body: JSON.stringify(page),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
-    // const data = await response.json();
-    // router.push(data.path);
-  }
+  const changeLang = (lang) => {
+    i18n.changeLanguage(lang);
+  };
   return (
     <div>
+      <button onClick={() => changeLang("en")}>EN</button>
+      <button onClick={() => changeLang("id")}>id</button>
+      <h1>{t("title")}</h1>
       <h1>SF7 Dynamic Routing </h1>
       <EmpList meetups={props.meetups} />
       {/* <ul>
@@ -57,7 +54,9 @@ export async function getStaticProps() {
   const meetups = await meetupsCollection.find().toArray();
 
   client.close();
-
+  const posts = {
+    notFound: true,
+  };
   return {
     props: {
       meetups: meetups.map((meetup) => ({
@@ -67,7 +66,8 @@ export async function getStaticProps() {
         details: meetup.description,
         id: meetup._id.toString(),
       })),
+      posts,
     },
-    revalidate: 1,
+    revalidate: 100,
   };
 }
