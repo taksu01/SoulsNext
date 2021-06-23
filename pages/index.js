@@ -6,6 +6,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import EmpList from "../components/meetups/EmpList";
 import { useTranslation } from "react-i18next";
+import { Z_FIXED } from "zlib";
+import path from "path";
+import getConfig from "next/config";
 
 export default function Home(props) {
   const { t, i18n } = useTranslation();
@@ -33,7 +36,12 @@ export default function Home(props) {
     </div>
   );
 }
-
+const serverPath = (staticFilePath) => {
+  return path.join(
+    getConfig().serverRuntimeConfig.PROJECT_ROOT,
+    staticFilePath
+  );
+};
 export async function getStaticProps() {
   // fetch data from an API
   const client = await MongoClient.connect(
@@ -49,6 +57,23 @@ export async function getStaticProps() {
   const posts = {
     notFound: true,
   };
+  console.log(serverPath("/locales/en/translation.json"));
+  const fs = require("fs");
+  const fileName = serverPath("public/locales/en/translation.json");
+  let file;
+  try {
+    if (fs.existsSync(fileName)) {
+      console.log("Exist");
+      //file = require(fileName);
+      let content = JSON.parse(fs.readFileSync(fileName, "utf8"));
+      content.title.head1 = content.title.head1 + "a";
+      fs.writeFileSync(fileName, JSON.stringify(content));
+    }
+  } catch (err) {
+    console.log("Dont exist");
+    console.log(err);
+  }
+
   return {
     props: {
       meetups: meetups.map((meetup) => ({
@@ -59,6 +84,6 @@ export async function getStaticProps() {
         id: meetup._id.toString(),
       })),
     },
-    revalidate: 100,
+    revalidate: 1000,
   };
 }
