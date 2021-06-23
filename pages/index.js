@@ -16,9 +16,9 @@ export default function Home(props) {
   return (
     <div>
       <button onClick={() => changeLang("en")}>EN</button>
-      <button onClick={() => changeLang("id")}>id</button>
-      <h1>{t("title")}</h1>
-      <h1>SF7 Dynamic Routing </h1>
+      <button onClick={() => changeLang("id")}>ID</button>
+      <h1>{t("title.head1")}</h1>
+      <h1>{t("title.head2")}</h1>
       <EmpList meetups={props.meetups} />
       {/* <ul>
         <li>
@@ -33,14 +33,6 @@ export default function Home(props) {
     </div>
   );
 }
-
-// export async function getStaticProps() {
-//   return {
-//     props: {
-//       res: (),
-//     },
-//   };
-// }
 
 export async function getStaticProps() {
   // fetch data from an API
@@ -66,7 +58,6 @@ export async function getStaticProps() {
         details: meetup.description,
         id: meetup._id.toString(),
       })),
-      posts,
     },
     revalidate: 100,
   };

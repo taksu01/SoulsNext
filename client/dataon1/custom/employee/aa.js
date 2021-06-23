@@ -27,3 +27,24 @@ export default function Employee() {
     </>
   );
 }
+
+export async function getStaticProps() {
+  var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "coffee_valley",
+  });
+
+  con.connect(function (err) {
+    if (err) throw err;
+    con.query("SELECT * FROM bean", queryDes);
+  });
+  return {
+    props: {},
+    revalidate: 1,
+  };
+}
+const queryDes = (err, res, field) => {
+  console.log(res);
+};
