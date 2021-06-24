@@ -51,7 +51,7 @@ export async function getStaticProps() {
 
   client.close();
 
-  getTranslationLanguage("en", 0);
+  const data = await getTranslationLanguage("en", 0);
   //timestamp = data.timestamp;
   //runTranslationChecking();
   // setInterval(function () {
