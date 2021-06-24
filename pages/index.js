@@ -6,10 +6,11 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import EmpList from "../components/meetups/EmpList";
 import { useTranslation } from "react-i18next";
-import { Z_FIXED } from "zlib";
 import path from "path";
 import getConfig from "next/config";
-
+import { getTranslationLanguage } from "./api/translation";
+//import { runTranslationChecking } from "./api/translation";
+let timestamp = 0;
 export default function Home(props) {
   const { t, i18n } = useTranslation();
   const router = useRouter();
@@ -20,8 +21,8 @@ export default function Home(props) {
     <div>
       <button onClick={() => changeLang("en")}>EN</button>
       <button onClick={() => changeLang("id")}>ID</button>
-      <h1>{t("title.head1")}</h1>
-      <h1>{t("title.head2")}</h1>
+      <h1>{t("title")}</h1>
+      <h1>{t("title")}</h1>
       <EmpList meetups={props.meetups} />
       {/* <ul>
         <li>
@@ -36,12 +37,7 @@ export default function Home(props) {
     </div>
   );
 }
-const serverPath = (staticFilePath) => {
-  return path.join(
-    getConfig().serverRuntimeConfig.PROJECT_ROOT,
-    staticFilePath
-  );
-};
+
 export async function getStaticProps() {
   // fetch data from an API
   const client = await MongoClient.connect(
@@ -54,26 +50,18 @@ export async function getStaticProps() {
   const meetups = await meetupsCollection.find().toArray();
 
   client.close();
-  const posts = {
-    notFound: true,
-  };
-  console.log(serverPath("/locales/en/translation.json"));
-  const fs = require("fs");
-  const fileName = serverPath("public/locales/en/translation.json");
-  let file;
-  try {
-    if (fs.existsSync(fileName)) {
-      console.log("Exist");
-      //file = require(fileName);
-      let content = JSON.parse(fs.readFileSync(fileName, "utf8"));
-      content.title.head1 = content.title.head1 + "a";
-      fs.writeFileSync(fileName, JSON.stringify(content));
-    }
-  } catch (err) {
-    console.log("Dont exist");
-    console.log(err);
-  }
 
+  getTranslationLanguage("en", 0);
+  //timestamp = data.timestamp;
+  //runTranslationChecking();
+  // setInterval(function () {
+  //   let update = getTranslationLanguage("en", 1, timestamp);
+
+  //   setTimeout(function () {
+  //     console.log(update);
+  //     if (update != false || update != undefined) timestamp = update.timestamp;
+  //   }, 5000);
+  // }, 10000);
   return {
     props: {
       meetups: meetups.map((meetup) => ({
