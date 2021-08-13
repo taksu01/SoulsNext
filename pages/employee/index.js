@@ -10,7 +10,7 @@ export default function EmployeePage(props) {
 
   return (
     <>
-      <EmployeeC></EmployeeC>
+      <EmployeeC>TEst</EmployeeC>
     </>
   );
 }
